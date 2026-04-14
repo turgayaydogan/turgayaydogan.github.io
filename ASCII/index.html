@@ -1,1 +1,140 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ASCII Kod Referans Sayfası</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+}
+header {
+  background: #111827;
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
+section {
+  max-width: 1100px;
+  margin: 30px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+h2 {
+  margin-top: 0;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+th {
+  background: #2563eb;
+  color: white;
+}
+input {
+  padding: 10px;
+  font-size: 18px;
+  width: 120px;
+  text-align: center;
+}
+.result {
+  font-size: 18px;
+  margin-top: 15px;
+}
+footer {
+  text-align: center;
+  padding: 20px;
+  color: gray;
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>ASCII Kod Referans Sayfası</h1>
+<p>Binary – Decimal – Hex Karşılıkları</p>
+</header>
+
+<section>
+<h2>ASCII Nedir?</h2>
+<p>
+ASCII, bilgisayarlarda karakterlerin sayısal karşılıklarını gösteren bir kodlama standardıdır.
+Her karakterin decimal, hexadecimal ve binary karşılığı vardır.
+</p>
+</section>
+
+<section>
+<h2>ASCII Tablosu (Temel Karakterler)</h2>
+<table>
+<thead>
+<tr>
+<th>Karakter</th>
+<th>Decimal</th>
+<th>Hex</th>
+<th>Binary</th>
+</tr>
+</thead>
+<tbody id="asciiTable"></tbody>
+</table>
+</section>
+
+<section>
+<h2>ASCII Dönüştürücü</h2>
+<p>Bir karakter girin:</p>
+<input maxlength="1" id="charInput" oninput="convertASCII()" />
+
+<div class="result" id="result"></div>
+</section>
+
+<footer>
+© 2026 ASCII Öğrenme Sayfası
+</footer>
+
+<script>
+function toBinary(num) {
+return num.toString(2).padStart(8, '0');
+}
+
+function toHex(num) {
+return num.toString(16).toUpperCase();
+}
+
+const table = document.getElementById("asciiTable");
+
+for (let i = 32; i <= 126; i++) {
+let row = `<tr>
+<td>${String.fromCharCode(i)}</td>
+<td>${i}</td>
+<td>${toHex(i)}</td>
+<td>${toBinary(i)}</td>
+</tr>`;
+
+ table.innerHTML += row;
+}
+
+function convertASCII() {
+let char = document.getElementById("charInput").value;
+if (!char) return;
+
+let code = char.charCodeAt(0);
+
+ document.getElementById("result").innerHTML = `
+ Decimal: ${code}<br>
+ Hex: ${toHex(code)}<br>
+ Binary: ${toBinary(code)}
+ `;
+}
+</script>
+
+</body>
+</html>
 
